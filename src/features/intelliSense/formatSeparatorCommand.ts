@@ -5,7 +5,7 @@ import { Command } from '@phoihos/vsce-util';
 const _TRAILING_TEXT_REGEX = /^:[: ]*/;
 
 export class FormatSeparatorCommand implements Command {
-  public readonly id = 'gitCommitMessageEditor.intelliSense.command.formatSeparator';
+  public readonly id = 'gitCommitMessageEditorCustom.intelliSense.command.formatSeparator';
 
   constructor() {}
 

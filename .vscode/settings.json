@@ -20,7 +20,7 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   //#region
-  "gitCommitMessageEditor.intelliSense.completion.scopes": [
+  "gitCommitMessageEditorCustom.intelliSense.completion.scopes": [
     {
       "scope": "Editor",
       "description": "About the **Editor** feature"

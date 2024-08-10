@@ -4,7 +4,7 @@ import { Command } from '@phoihos/vsce-util';
 import { RecentCommits, RecentCommitsResolver } from './recentCommitsResolver';
 
 export class ShowRecentCommitsCommand implements Command {
-  public readonly id = 'gitCommitMessageEditor.codeLens.command.showRecentCommits';
+  public readonly id = 'gitCommitMessageEditorCustom.codeLens.command.showRecentCommits';
 
   private readonly _resolver: RecentCommitsResolver;
 

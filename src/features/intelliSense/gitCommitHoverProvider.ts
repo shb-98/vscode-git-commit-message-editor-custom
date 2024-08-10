@@ -27,7 +27,7 @@ class SummaryHoverProvider {
     const tokens = parseSummary(leadingText);
 
     if (tokens.tokenTypeAt === ETokenType.Type) {
-      const type = constants.summaryTypes.find((e) => e.type === tokens.type);
+      const type = constants.getSummaryTypes(this._config).find((e) => e.type === tokens.type);
 
       if (type !== undefined) {
         return new vscode.Hover(
@@ -51,7 +51,7 @@ class SummaryHoverProvider {
       }
     } else if (tokens.tokenTypeAt === ETokenType.Desc) {
       const rangeText = document.getText(range);
-      const emoji = constants.summaryEmojis.find((e) => e.emoji === rangeText);
+      const emoji = constants.getSummaryEmojis(this._config).find((e) => e.emoji === rangeText);
 
       if (emoji !== undefined) {
         return new vscode.Hover(

@@ -1,3 +1,5 @@
+import { Configuration } from '../../../configuration';
+
 export interface SummaryType {
   readonly type: string;
   readonly title: string;
@@ -6,10 +8,14 @@ export interface SummaryType {
   readonly sort: number;
 }
 
+interface CustomeType {
+  [key: string]: Partial<SummaryType>;
+}
+
 /**
  * @see https://github.com/commitizen/conventional-commit-types/blob/master/index.json
  */
-export const summaryTypes: SummaryType[] = (function () {
+const summaryTypes: SummaryType[] = (function () {
   const summaryTypes: SummaryType[] = [
     {
       type: 'feat',
@@ -104,12 +110,31 @@ export const summaryTypes: SummaryType[] = (function () {
     }
   ];
 
-  interface CommitizenTypes {
-    [key: string]: Partial<SummaryType>;
-  }
-  const commitizenTypes = require('conventional-commit-types').types as CommitizenTypes;
+  const commitizenTypes = require('conventional-commit-types').types as CustomeType;
 
   return summaryTypes.map((e): SummaryType => {
     return { ...e, ...commitizenTypes[e.type] };
   });
 })();
+
+export function getSummaryTypes(config: Configuration): SummaryType[] {
+  const summaryCustomType = config.summaryCustomType as CustomeType;
+
+  const keyRoleModel = ['type', 'title', 'description', 'emojis', 'sort'];
+  const defaultType = summaryTypes.map((v) => v.type);
+  const addSummaryType = Object.values(summaryCustomType)
+    .filter((v) => !defaultType.includes(v.type as string))
+    .filter((v) => config.isRequiredType<SummaryType>(keyRoleModel, v))
+    .map((v) => v as SummaryType);
+
+  const mergeSummaryTypes = summaryTypes
+    .map((e): SummaryType => {
+      return { ...e, ...summaryCustomType[e.type] };
+    })
+    .concat(addSummaryType);
+
+  const removeType = config.removeType as string[];
+  const fixedSummaryTypes = mergeSummaryTypes.filter((v) => !removeType.includes(v.type));
+
+  return fixedSummaryTypes;
+}

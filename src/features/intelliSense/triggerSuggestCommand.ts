@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import { Command } from '@phoihos/vsce-util';
 
 export class TriggerSuggestCommand implements Command {
-  public readonly id = 'gitCommitMessageEditor.intelliSense.command.triggerSuggest';
+  public readonly id = 'gitCommitMessageEditorCustom.intelliSense.command.triggerSuggest';
 
   constructor() {}
 

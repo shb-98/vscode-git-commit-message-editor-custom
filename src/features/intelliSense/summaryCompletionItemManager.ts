@@ -23,7 +23,8 @@ export class SummaryCompletionItemManager {
 
   constructor(createNewScopeCommandId: string, git: GitService, config: Configuration) {
     //#region Type completion items
-    this.typeItems = constants.summaryTypes.map((e) => {
+    const summaryTypes = constants.getSummaryTypes(config);
+    this.typeItems = summaryTypes.map((e) => {
       const item = new TokenCompletionItem(e.type);
       item.detail = e.title;
       item.documentation = new vscode.MarkdownString(e.emojis[0] + ' ' + e.description);
@@ -37,7 +38,7 @@ export class SummaryCompletionItemManager {
       // reserved emoji for BREAKING CHANGE
       if (emoji === '💥') return { token: '!', sortText: '1000' };
 
-      for (const e of constants.summaryTypes) {
+      for (const e of summaryTypes) {
         const index = e.emojis.findIndex((ee) => ee === emoji);
         if (index !== -1) {
           return {
@@ -49,9 +50,11 @@ export class SummaryCompletionItemManager {
 
       return { token: '', sortText: '1000' };
     };
-    const emojiIndexPadding = (constants.summaryEmojis.length - 1).toString().length;
 
-    this._emojiItems = constants.summaryEmojis.map((e, i) => {
+    const summaryEmojis = constants.getSummaryEmojis(config);
+    const emojiIndexPadding = (summaryEmojis.length - 1).toString().length;
+
+    this._emojiItems = summaryEmojis.map((e, i) => {
       const filter = getEmojiFilter(e.emoji);
 
       const item = new EmojiCompletionItem(e.code, filter.token);
