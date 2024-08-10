@@ -7,7 +7,7 @@ import { SUMMARY_TOKEN_SCOPE_REGEX } from '../parser/syntaxRegex';
 import { Command } from '@phoihos/vsce-util';
 
 export class CreateNewScopeCommand implements Command {
-  public readonly id = 'gitCommitMessageEditor.intelliSense.command.createNewScope';
+  public readonly id = 'gitCommitMessageEditorCustom.intelliSense.command.createNewScope';
 
   private readonly _scopeRangeRegex: RegExp;
   private readonly _config: Configuration;

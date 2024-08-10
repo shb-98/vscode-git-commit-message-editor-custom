@@ -1,6 +1,9 @@
 MIT License
 
 Copyright (c) 2021-present, phoihos
+Copyright (c) 2024, shb-98
+
+This software was originally created by phoihos and modified by shb-98.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

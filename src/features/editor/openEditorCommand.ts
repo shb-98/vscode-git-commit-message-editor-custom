@@ -5,7 +5,7 @@ import { GitService } from '../../gitService';
 import { Command } from '@phoihos/vsce-util';
 
 export class OpenEditorCommand implements Command {
-  public readonly id = 'gitCommitMessageEditor.editor.command.openEditor';
+  public readonly id = 'gitCommitMessageEditorCustom.editor.command.openEditor';
 
   private readonly _scheme: string;
   private readonly _git: GitService;

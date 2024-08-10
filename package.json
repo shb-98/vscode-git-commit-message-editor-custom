@@ -1,20 +1,19 @@
 {
-  "name": "git-commit-message-editor",
-  "displayName": "Git Commit Message Editor",
+  "name": "git-commit-message-editor-custom",
+  "displayName": "Git Commit Message Editor Custom",
   "description": "Edit commit messages via VS Code's editor and Autocomplete for Conventional Commits",
-  "icon": "images/icon.png",
-  "publisher": "phoihos",
+  "publisher": "shb-98",
   "repository": {
     "type": "git",
-    "url": "https://github.com/phoihos/vscode-git-commit-message-editor"
+    "url": "https://github.com/shb-98/vscode-git-commit-message-editor-custom"
   },
   "bugs": {
-    "url": "https://github.com/phoihos/vscode-git-commit-message-editor/issues"
+    "url": "https://github.com/shb-98/vscode-git-commit-message-editor-custom/issues"
   },
-  "homepage": "https://github.com/phoihos/vscode-git-commit-message-editor#readme",
+  "homepage": "https://github.com/shb-98/vscode-git-commit-message-editor-custom#readme",
   "license": "MIT",
   "preview": true,
-  "version": "0.6.3",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -32,42 +31,42 @@
   ],
   "activationEvents": [
     "onLanguage:git-commit",
-    "onCommand:gitCommitMessageEditor.editor.command.openEditor"
+    "onCommand:gitCommitMessageEditorCustom.editor.command.openEditor"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "gitCommitMessageEditor.editor.command.openEditor",
+        "command": "gitCommitMessageEditorCustom.editor.command.openEditor",
         "title": "Open Commit Message Editor",
         "category": "Git",
         "icon": "$(edit)"
       },
       {
-        "command": "gitCommitMessageEditor.codeLens.command.showRecentCommits",
+        "command": "gitCommitMessageEditorCustom.codeLens.command.showRecentCommits",
         "title": "Show Recent Commits to Choose A Commit Message..."
       }
     ],
     "menus": {
       "commandPalette": [
         {
-          "command": "gitCommitMessageEditor.editor.command.openEditor",
+          "command": "gitCommitMessageEditorCustom.editor.command.openEditor",
           "when": "config.git.enabled && !git.missing && gitOpenRepositoryCount != 0"
         },
         {
-          "command": "gitCommitMessageEditor.codeLens.command.showRecentCommits",
+          "command": "gitCommitMessageEditorCustom.codeLens.command.showRecentCommits",
           "when": "false"
         }
       ],
       "scm/title": [
         {
-          "command": "gitCommitMessageEditor.editor.command.openEditor",
+          "command": "gitCommitMessageEditorCustom.editor.command.openEditor",
           "group": "navigation@1",
           "title": "Edit",
           "when": "scmProvider == git"
         },
         {
-          "command": "gitCommitMessageEditor.editor.command.openEditor",
+          "command": "gitCommitMessageEditorCustom.editor.command.openEditor",
           "group": "inline",
           "title": "Edit",
           "when": "scmProvider == git"
@@ -76,57 +75,112 @@
     },
     "keybindings": [
       {
-        "command": "gitCommitMessageEditor.codeLens.command.showRecentCommits",
+        "command": "gitCommitMessageEditorCustom.codeLens.command.showRecentCommits",
         "when": "editorLangId == git-commit && config.git.enabled && !git.missing && gitOpenRepositoryCount != 0",
         "key": "ctrl+shift+'"
       }
     ],
     "configuration": {
-      "title": "Git Commit Message Editor",
+      "title": "Git Commit Message Editor Custom",
       "properties": {
-        "gitCommitMessageEditor.editor.keepAfterSave": {
+        "gitCommitMessageEditorCustom.editor.keepAfterSave": {
           "type": "boolean",
           "default": false,
           "description": "Controls whether the commit message editor tab keep or close, after saving"
         },
-        "gitCommitMessageEditor.codeLens.recentCommits.enabled": {
+        "gitCommitMessageEditorCustom.codeLens.recentCommits.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Controls whether the `Recent commits...` code lens feature is enabled or not"
         },
-        "gitCommitMessageEditor.codeLens.recentCommits.maxItems": {
+        "gitCommitMessageEditorCustom.codeLens.recentCommits.maxItems": {
           "type": "number",
           "default": 32,
           "minimum": 1,
           "maximum": 128,
           "description": "Specifies the maximum number of commits to show in the quick pick UI"
         },
-        "gitCommitMessageEditor.intelliSense.completion.enabled": {
+        "gitCommitMessageEditorCustom.intelliSense.completion.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Controls whether the \"Quick suggestions\" feature is enabled or not"
         },
-        "gitCommitMessageEditor.intelliSense.completion.scopes": {
+        "gitCommitMessageEditorCustom.intelliSense.completion.scopes": {
           "type": "array",
           "default": [],
           "description": "Scopes that user created (Scopes will be saved into `workspace/.vscode/settings.json`)"
         },
-        "gitCommitMessageEditor.intelliSense.completion.logScopes.enabled": {
+        "gitCommitMessageEditorCustom.intelliSense.completion.logScopes.enabled": {
           "type": "boolean",
           "default": false,
           "description": "Controls whether the scope suggestions include or not the parsed scopes from existing commit history"
         },
-        "gitCommitMessageEditor.intelliSense.completion.issues.pageSize": {
+        "gitCommitMessageEditorCustom.intelliSense.completion.issues.pageSize": {
           "type": "number",
           "default": 20,
           "minimum": 1,
           "maximum": 100,
           "description": "Specifies the maximum number of issues per page to show in the suggestions widget"
         },
-        "gitCommitMessageEditor.intelliSense.hover.enabled": {
+        "gitCommitMessageEditorCustom.intelliSense.hover.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Controls whether the \"Hover\" feature is enabled or not"
+        },
+        "gitCommitMessageEditorCustom.intelliSense.constants.summaryType": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "emojis": {
+                "type": "array"
+              },
+              "sort": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "default": [],
+          "description": "Custom summary types to override default values"
+        },
+        "gitCommitMessageEditorCustom.intelliSense.constants.summaryEmoji": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "emoji": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          },
+          "default": [],
+          "description": "Custom summary emojis to override default values"
+        },
+        "gitCommitMessageEditorCustom.intelliSense.constants.removeType": {
+          "type": "array",
+          "default": [],
+          "description": "Remove from default type for the specified type"
         }
       }
     }
